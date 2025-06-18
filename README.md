@@ -27,8 +27,8 @@
 
 ## DEMO 截圖
 
-> ![首頁畫面](docs/demo_home.png)  
-> ![課程詳情](docs/demo_detail.png)
+> ![首頁畫面](demo_home.png)  
+> ![課程詳情](demo_detail.png)
 
 ---
 
