@@ -1,0 +1,52 @@
+﻿@model WebApp.Models.Course
+
+<div class="card my-4">
+    <div class="card-body">
+        <h2>@Model.Title</h2>
+        <p><strong>老師：</strong>@Model.TeacherName</p>
+        <p><strong>分類：</strong>@Model.CategoryName</p>
+        <p><strong>價格：</strong>@Model.Price.ToString("N0") 元</p>
+        <p>@Model.Description</p>
+        @* 這裡可擴充：@Model.Syllabus、@Model.Goals ... *@
+    </div>
+</div>
+
+<hr />
+<h3>學員留言與評價</h3>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <ul class="list-group mb-4">
+        @foreach (var c in Model.Comments)
+        {
+            <li class="list-group-item">
+                <b>@c.UserName</b> - @c.Rating 分 - @c.CreatedAt.ToShortDateString()<br />
+                @c.Content
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div class="alert alert-info">目前尚無留言</div>
+}
+
+<hr />
+<h4>新增留言與評價</h4>
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="CourseId" value="@Model.Id" />
+    <div class="mb-3">
+        <label class="form-label">評分：</label>
+        <select name="Rating" class="form-select" style="width:100px;display:inline-block;" required>
+            <option value="5">5分</option>
+            <option value="4">4分</option>
+            <option value="3">3分</option>
+            <option value="2">2分</option>
+            <option value="1">1分</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">留言內容：</label>
+        <textarea name="Content" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">送出</button>
+</form>

@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CourseListViewModel
+
+<h2>學習列表</h2>
+
+<form method="get" asp-action="Learning">
+    <select name="categoryId" onchange="this.form.submit()">
+        <option value="">全部分類</option>
+        @foreach (var cat in Model.Categories)
+        {
+            if (cat.Id == Model.SelectedCategoryId)
+            {
+                <option value="@cat.Id" selected>@cat.Name</option>
+            }
+            else
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        }
+    </select>
+</form>
+
+<div class="row">
+    @foreach (var course in Model.Courses)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@course.Title</h5>
+                    <p class="card-text">@course.Description</p>
+                    <p class="card-text">價格：@course.Price</p>
+                    <!-- 可加更多資訊 -->
+                </div>
+            </div>
+        </div>
+    }
+</div>

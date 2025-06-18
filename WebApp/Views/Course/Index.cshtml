@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<WebApp.Models.Course>
+@{
+    var keyword = ViewData["Keyword"] as string ?? "";
+    var sort = ViewData["Sort"] as string ?? "";
+}
+
+<h2>所有課程</h2>
+<!-- ✅ 加在這裡 -->
+<form method="get" class="row mb-3">
+    <div class="col-md-6">
+        <input type="text" name="keyword" class="form-control" placeholder="搜尋課程關鍵字" value="@keyword" />
+    </div>
+    <div class="col-md-4">
+        <select name="sort" class="form-select">
+            <option value="">排序方式</option>
+            <option value="priceAsc" selected="@(sort == "priceAsc")">價格：低 ➜ 高</option>
+            <option value="priceDesc" selected="@(sort == "priceDesc")">價格：高 ➜ 低</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100">篩選</button>
+    </div>
+</form>
+
+<hr />
+<div class="row">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card p-3 shadow-sm rounded">
+                <h5>@course.Title</h5>
+                <p><strong>教師：</strong> @course.TeacherName</p>
+                <p><strong>分類：</strong> @course.CategoryName</p>
+                <p><strong>價格：</strong> @course.Price 元</p>
+                <p>@(course.Description.Length > 80 ? course.Description.Substring(0, 80) + "..." : course.Description)</p>
+                <a href="/Course/Details/@course.Id" class="btn btn-primary">查看詳情</a>
+            </div>
+        </div>
+    }
+</div>

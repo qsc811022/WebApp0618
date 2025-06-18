@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebApp.Models.Course
+
+@{
+    ViewData["Title"] = "刪除課程";
+}
+
+<h2>確定刪除此課程？</h2>
+<div class="mb-3">
+    <strong>@Model.Title</strong> <br />
+    @Model.Description
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">確定刪除</button>
+    <a asp-action="Admin" class="btn btn-secondary">取消</a>
+</form>

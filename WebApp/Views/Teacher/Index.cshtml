@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebApp.Models.Teacher>
+@{
+    ViewData["Title"] = "師資介紹";
+}
+<h2>師資介紹</h2>
+<div class="row">
+ 
+    @foreach (var teacher in Model)
+
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="@teacher.PhotoUrl"
+                     alt="@teacher.Name"
+                     class="card-img-top"
+                     style="width:100%; height:300px; object-fit:cover;" />
+                <div class="card-body">
+                    <h5 class="card-title">@teacher.Name</h5>
+                    <p class="card-text"><strong>@teacher.Subject</strong></p>
+                    <p class="card-text">@teacher.Description</p>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
