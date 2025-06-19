@@ -38,4 +38,28 @@
 
 ---
 
+
+    Client[使用者瀏覽器]
+    WebApp[ASP.NET Core MVC\n(控制器/檢視/模型)]
+    Dapper[Dapper ORM\n資料存取層]
+    Database[SQL Server\n(課程/老師/留言/FAQ等資料表)]
+
+    Client <--> WebApp
+    WebApp --> Dapper
+    Dapper --> Database
+
+    subgraph WebApp
+        Course[課程管理]
+        Teacher[老師介紹]
+        Comment[留言評價]
+        FAQ[常見問題]
+        Auth[登入註冊/權限]
+    end
+
+    WebApp --> Course
+    WebApp --> Teacher
+    WebApp --> Comment
+    WebApp --> FAQ
+    WebApp --> Auth
+
 如有技術問題歡迎提問或 Issue！
