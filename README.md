@@ -37,7 +37,8 @@
 - Tedliu ([GitHub](https://github.com/qsc811022))
 
 ---
-graph TD
+
+
     Client[使用者瀏覽器]
     WebApp[ASP.NET Core MVC\n(控制器/檢視/模型)]
     Dapper[Dapper ORM\n資料存取層]
